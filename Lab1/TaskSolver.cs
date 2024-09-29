@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    internal class TaskSolver
+    public class TaskSolver
     {
         public static int SolveTask(string inputValue)
         {

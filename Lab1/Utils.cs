@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    internal class Utils
+    public class Utils
     {
         public static string[] ReadInput(string path)
         {
