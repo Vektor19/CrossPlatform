@@ -30,7 +30,7 @@ namespace Lab2
                 if (!int.TryParse(size[0], out int rows) || !int.TryParse(size[1], out int cols) || size.Length!=2)
                 {
                     Console.WriteLine("Invalid format of values: " + size);
-                    arrays.Add(array);
+                    ++i;
                     continue;
                 }
                 if (isArrayOfStringsAllIntegers(input[(i + 1)..(i + 1 + rows)]))
