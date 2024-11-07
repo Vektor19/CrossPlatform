@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Lab4: lab1 without args": {
+      "commandName": "Project",
+      "commandLineArgs": "run lab1"
+    },
+    "Lab4: lab1 with input path": {
+      "commandName": "Project",
+      "commandLineArgs": "run lab1 -i D:\\Projects\\VS_Projects\\CrossPlatform\\Lab1\\INPUT.txt"
+    },
+    "Lab4: set-path": {
+      "commandName": "Project",
+      "commandLineArgs": "set-path --path D:\\Projects\\VS_Projects\\CrossPlatform\\Lab2"
+    },
+    "Lab4": {
+      "commandName": "Project"
+    }
+  }
+}
