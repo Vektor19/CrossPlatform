@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>VKomissarov</Title>
+    <PackAsTool>True</PackAsTool>
+    <Company>$(Komissarov)</Company>
+    <PackageId>VKomissarov</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lab1\Lab1.csproj" />
+    <ProjectReference Include="..\Lab2\Lab2.csproj" />
+    <ProjectReference Include="..\Lab3\Lab3.csproj" />
+  </ItemGroup>
+
+</Project>
