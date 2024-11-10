@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageId>VKomissarov</PackageId>
+	<PackageId>VKomissarov</PackageId>
     <Title>VKomissarov</Title>
     <Authors>Komissarov</Authors>
     <PackAsTool>True</PackAsTool>
