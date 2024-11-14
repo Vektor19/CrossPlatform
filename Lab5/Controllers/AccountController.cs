@@ -41,7 +41,9 @@ namespace Lab5.Controllers
             {
                 Name = User.Identity.Name,
                 EmailAddress = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
-                ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value
+                ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value,
+                PhoneNumber = User.Claims.FirstOrDefault(c => c.Type == "phone_number")?.Value,
+                Username = User.Claims.FirstOrDefault(c => c.Type == "username")?.Value
             });
         }
 

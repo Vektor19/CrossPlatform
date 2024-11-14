@@ -12,5 +12,11 @@ namespace Lab5.ViewModels
         public string Name { get; set; }
 
         public string ProfileImage { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string Username { get; set; }
+
+
     }
 }
