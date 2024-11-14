@@ -6,7 +6,27 @@
     <div class="col-md-12">
         <h2>Lab 1</h2>
 
-        <p class="desсriprion"></p>
-        <p>To follow along in building this sample please <a href="https://auth0.com/docs/quickstart/webapp/aspnet-core">refer to the Quickstart</a>.
+        <p class="desсriprion">
+            Задано натуральне число N. Потрібно написати програму, яка обчислює кількість різних тризначних чисел, що виходять з N, викресленням цифр з його десяткового запису.
+        </p>
+        <p>
+            <h5>Вхідні дані</h5>
+            Вхідний текстовий файл INPUT.TXT містить одне натуральне число N (1 ≤ N ≤ 10100).
+            <br /><br/>
+            Приклади вхідних даних:
+            <p>12<br />11111111111100111111111</p>
+        </p>
+        <form asp-action="Execute" asp-controller="Lab" method="get">
+            <input type="hidden" value="Lab1" name="labName"></input>
+            <h4>Введіть дані: </h4>
+            <textarea id="inputArea" name="inputData" required>@ViewData["InputData"]</textarea>
+            <h4>Результат: </h4>
+            <p>
+                Вихідний текстовий файл OUTPUT.TXT містить одне ціле число – знайдену кількість трицифрових чисел.
+            </p>
+            <textarea id="outputArea" name="result" readonly>@ViewData["Result"]</textarea>
+            <br/>
+            <button type="submit">Execute</button>
+        </form>
     </div>
 </div>
