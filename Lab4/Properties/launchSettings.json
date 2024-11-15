@@ -14,7 +14,7 @@
     },
     "Lab4: set-path": {
       "commandName": "Project",
-      "commandLineArgs": "set-path --path D:\\Projects\\VS_Projects\\CrossPlatform\\Lab2"
+      "commandLineArgs": "set-path --path D:\\Projects\\VS_Projects\\CrossPlatform\\Lab1"
     },
     "Lab4": {
       "commandName": "Project"

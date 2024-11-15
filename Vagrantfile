@@ -253,7 +253,9 @@ Vagrant.configure("2") do |config|
         # Install the tool
         echo "------------------- Installing tool VKomissarov globally... -------------------"
         dotnet tool install VKomissarov --version 1.0.0 --tool-path /bin --add-source http://localhost:5000/v3/index.json
-
+        
+        echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/vagrant/.bashrc
+        source /home/vagrant/.bashrc
         echo "------------------- Run 'Lab4' to launch the tool. -------------------"
     SHELL
   end

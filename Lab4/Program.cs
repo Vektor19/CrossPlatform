@@ -1,6 +1,7 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
@@ -100,8 +101,9 @@ namespace Lab4
             {
                 return consolePath;
             }
-            EnvironmentVariableTarget target = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? EnvironmentVariableTarget.User : EnvironmentVariableTarget.Process;
-            string? envPath = Environment.GetEnvironmentVariable("LAB_PATH", target);
+            //EnvironmentVariableTarget target = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? EnvironmentVariableTarget.User : EnvironmentVariableTarget.Process;
+            string? envPath = EnvironmentManager.Get("LAB_PATH");
+            Console.WriteLine($"LAB_PATH: {envPath}");
 
             if (!string.IsNullOrEmpty(envPath))
             {
@@ -124,10 +126,16 @@ namespace Lab4
 
         private string FindFileIgnoreCase(string directory, string fileName)
         {
-            foreach (var file in Directory.EnumerateFiles(directory, fileName, SearchOption.TopDirectoryOnly))
+            if (!Directory.Exists(directory))
+            {
+                return String.Empty;
+            }
+
+            foreach (var file in Directory.EnumerateFiles(directory))
             {
                 if (string.Equals(Path.GetFileName(file), fileName, StringComparison.OrdinalIgnoreCase))
                 {
+                    Console.WriteLine($"found file:" + file);
                     return file;
                 }
             }
@@ -151,9 +159,9 @@ namespace Lab4
         {
             try
             {
-                EnvironmentVariableTarget target = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? EnvironmentVariableTarget.User : EnvironmentVariableTarget.Process;
-                Environment.SetEnvironmentVariable("LAB_PATH", PathToFolder, target);
-                Console.WriteLine($"LAB_PATH set to {Environment.GetEnvironmentVariable("LAB_PATH")}");
+                EnvironmentManager.Set("LAB_PATH", PathToFolder!);
+                Console.WriteLine($"LAB_PATH set to {PathToFolder}");
+                
 
             }
             catch (Exception ex)
@@ -161,5 +169,57 @@ namespace Lab4
                 Console.WriteLine("Error setting LAB_PATH: " + ex.Message);
             }
         }
+    }
+}
+
+public class EnvironmentManager
+{
+    public static string? Get(string variableName)
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            return System.Environment.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.User);
+
+        string? result = null;
+        var proc = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"-c \"echo ${variableName}\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            }
+        };
+
+        proc.Start();
+        while (!proc.StandardOutput.EndOfStream)
+            result = proc.StandardOutput.ReadLine();
+
+        proc.WaitForExit();
+        return result;
+    }
+
+    public static void Set(string variableName, string value)
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            System.Environment.SetEnvironmentVariable(variableName, value, EnvironmentVariableTarget.User);
+            return;
+        }
+
+        var proc = new Process
+        {
+            StartInfo = new ProcessStartInfo
+            {
+                FileName = "/bin/bash",
+                Arguments = $"-c \"echo export {variableName}={value}>>~/.bashrc; source ~/.bashrc\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            }
+        };
+        proc.Start();
+        proc.WaitForExit();
     }
 }
