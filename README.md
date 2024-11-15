@@ -10,3 +10,8 @@ dotnet build Build.proj -p:Solution=Lab1 -t:Run
 ```bash
 dotnet build Build.proj -p:Solution=Lab1 -t:Test
 ```
+## Команди для розгортання Лабораторної 5
+```bash
+vagrant up lab5
+```
+Для того, щоб відкрити перейдіть: http://localhost:3000
