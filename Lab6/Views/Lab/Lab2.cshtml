@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Lab2";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Lab 2</h2>
+
+        <p class="desсriprion">
+            У прямокутній таблиці N×M (у кожній клітинці якої записано деяке число) на початку гравець перебуває у лівій верхній клітині. За один хід йому дозволяється переміщатися в сусідню клітину або праворуч, або вниз (ліворуч і вгору переміщатися заборонено). При проході через клітку з гравця беруть стільки у.о., скільки записано в цій клітці (гроші беруть також за першу і останню клітини його шляху).
+            Потрібно знайти мінімальну суму у.о., заплативши яку гравець може потрапити у правий нижній кут.
+        </p>
+        <p>
+            <h5>Вхідні дані</h5>
+            У вхідному файлі INPUT.TXT задано два числа N і M - розміри таблиці (1 ≤ N ≤ 20, 1 ≤ M ≤ 20). Потім йде N рядків по M чисел у кожному - розміри штрафів в у.о. за проходження через відповідні клітини (числа від 0 до 100). <br /><br />
+            Приклади вхідних даних:
+            <div style="display:flex; flex-direction:row; gap: 20px;">
+            <p style="border: solid 1px black; width: 200px">
+                3 4
+                <br />
+                1 1 1 1
+                <br />
+                5 2 2 100
+                <br />
+                9 4 2 1
+            </p>
+            <p style="border: solid 1px black; width: 200px">
+                5 5
+                <br />
+                1 1 1 1 1
+                <br />
+                3 100 100 100 100
+                <br />
+                1 1 1 1 1
+                <br />
+                2 2 2 2 1
+                <br />
+                1 1 1 1 1
+
+                </p>
+            </div>
+        </p>
+        <form asp-action="Execute" asp-controller="Lab" method="get">
+            <input type="hidden" value="Lab2" name="labName"></input>
+            <h4>Введіть дані: </h4>
+            <textarea id="inputArea" name="inputData" required>@ViewData["InputData"]</textarea>
+            <h4>Результат:</h4>
+            <p>
+                Мінімальна сума, витративши яку можна потрапити у нижній правий кут.
+            </p>
+            <textarea id="outputArea" name="result" readonly>@ViewData["Result"]</textarea>
+            <br />
+            <button type="submit">Execute</button>
+        </form>
+    </div>
+</div>
