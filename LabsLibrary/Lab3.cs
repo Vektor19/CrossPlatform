@@ -1,4 +1,5 @@
 ﻿using Lab3;
+using Lab3Library;
 
 namespace LabsLibrary
 {
