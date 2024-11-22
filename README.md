@@ -38,3 +38,9 @@ dotnet add package VKomissarovLab3 --version 1.0.0 --source "../LabRepo"
 vagrant up lab5
 ```
 Для того, щоб відкрити перейдіть: http://localhost:3000
+
+## Команди для розгортання Лабораторної 6
+```bash
+vagrant up lab6
+```
+Для того, щоб відкрити перейдіть: http://localhost:3000
