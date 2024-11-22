@@ -91,6 +91,10 @@ Vagrant.configure("2") do |config|
               exit 1
           }
         }
+        cd /vagrant/Lab3Library
+        dotnet pack --output "../LabRepo"
+        cd ../Lab3
+        dotnet add package VKomissarovLab3 --version 1.0.0 --source "../LabRepo"
 
         # Add BaGet source and build Lab4
         cd /vagrant/Lab4
@@ -214,6 +218,11 @@ Vagrant.configure("2") do |config|
             fi
         fi
 
+        
+        cd /vagrant/Lab3Library
+        dotnet pack --output "../LabRepo"
+        cd ../Lab3
+        dotnet add package VKomissarovLab3 --version 1.0.0 --source "../LabRepo"
         # Add BaGet source and build Lab4
         cd /vagrant/Lab4
         echo "--------------- Configuring BaGet as a NuGet source... ---------------"
@@ -288,6 +297,10 @@ Vagrant.configure("2") do |config|
         dotnet --list-runtimes
 
         
+        cd /vagrant/Lab3Library
+        dotnet pack --output "../LabRepo"
+        cd ../Lab3
+        dotnet add package VKomissarovLab3 --version 1.0.0 --source "../LabRepo"        
         # Build Lab5
         cd /vagrant/Lab5
 
