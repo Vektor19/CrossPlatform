@@ -27,13 +27,13 @@ builder.Services.AddDbContext<CallCentersDbContext>(options => {
     switch (builder.Configuration["UsingDatabaseProvider"])
     {
         case "SqlServer":
-            options.UseSqlServer("");
+            options.UseSqlServer("Server=localhost;Database=CallCentersDb;Trusted_Connection=True;");
             break;
         case "InMemory":
             options.UseInMemoryDatabase("CallCentersDb");
             break;
         case "Postgres":
-            options.UseNpgsql("");
+            options.UseNpgsql("Host=localhost;Database=CallCentersDb;Username=postgres;Password=postgres;");
             break;
         default:
             options.UseSqlite("Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CallCentersDb.db"));
