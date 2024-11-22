@@ -1,6 +1,4 @@
-﻿using Lab6.Database.Models;
-
-namespace Lab6.Models
+﻿namespace Lab6.RequestModels
 {
     public class StaffModel
     {

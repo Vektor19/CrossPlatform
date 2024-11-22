@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Lab6.Database.Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Lab6.RequestModels;
+using System.Net.Http.Json;
+using System.Net.Http;
+
 namespace Lab6.Controllers
 {
     public class DataViewsController : Controller
@@ -72,6 +76,36 @@ namespace Lab6.Controllers
 
             }
             return View(contracts);
+        }
+        [HttpGet]
+        public IActionResult SearchContracts()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SearchContracts(SearchContractsRequest request)
+        {
+            if (request == null)
+            {
+                return View();
+            }
+            HttpClient httpClient = new HttpClient();
+            var formattedDate= request.DateTime == null ? null : request.DateTime.Value.ToString("O");
+            var response = await httpClient.GetAsync($"http://localhost:3000/api/contracts/search?dateTime={formattedDate}&&customerIds={request.CustomerIds}&&otherDetails={request.OtherDetails}");
+
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var results = JsonSerializer.Deserialize<IEnumerable<Contract>>(content, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return View(results);
+            }
+
+            return View();
         }
     }
 }

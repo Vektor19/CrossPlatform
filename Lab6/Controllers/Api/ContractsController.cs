@@ -1,10 +1,11 @@
 ﻿using Lab6.Database;
 using Lab6.Database.Models;
-using Lab6.Models;
+using Lab6.RequestModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
+using System.Text.Json;
 
 namespace Lab6.Controllers.Api
 {
@@ -99,6 +100,49 @@ namespace Lab6.Controllers.Api
                 return Ok();
             }
             return BadRequest();
+        }
+        [HttpGet]
+        [Route("search")]
+        public async Task<ActionResult<IEnumerable<object>>> SearchContracts([FromQuery] SearchContractsRequest request)
+        {
+            var query = _context.Contracts
+             .Include(c => c.Customer)
+             .AsQueryable();
+            
+            if (request.DateTime.HasValue)
+            {
+                query = query.Where(c => c.ContractStartDate.Date <= request.DateTime.Value.Date
+                                       && c.ContractEndDate.Date >= request.DateTime.Value.Date);
+            }
+
+            if (!string.IsNullOrEmpty(request.CustomerIds))
+            {
+                var ids = request.CustomerIds.Split(",");
+                query = query.Where(c => ids.Contains(c.CustomerId));
+            }
+
+            if (!string.IsNullOrEmpty(request.OtherDetails))
+            {
+                query = query.Where(c => c.OtherDetails.StartsWith(request.OtherDetails));
+            }
+            var results = await query
+                .Select(c => new
+                {
+                    c.ContractId,
+                    c.ContractStartDate,
+                    c.ContractEndDate,
+                    c.OtherDetails,
+                    c.Customer,
+                    c.CustomerId,
+                })
+                .ToListAsync();
+
+            if (!results.Any())
+            {
+                return NotFound("No contracts found with the specified criteria.");
+            }
+
+            return Ok(results);
         }
     }
 }

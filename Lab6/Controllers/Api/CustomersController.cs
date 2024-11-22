@@ -1,6 +1,6 @@
 ﻿using Lab6.Database;
 using Lab6.Database.Models;
-using Lab6.Models;
+using Lab6.RequestModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
