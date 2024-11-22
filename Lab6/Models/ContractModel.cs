@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿using Lab6.Database.Models;
 
-namespace Lab6.Database.Models
+namespace Lab6.Models
 {
-    public class Contract
+    public class ContractModel
     {
-        public string ContractId { get; set; }
         public string CustomerId { get; set; }
         public DateTime ContractStartDate { get; set; }
         public DateTime ContractEndDate { get; set; }
@@ -13,3 +11,4 @@ namespace Lab6.Database.Models
         public Customer? Customer { get; set; }
     }
 }
+

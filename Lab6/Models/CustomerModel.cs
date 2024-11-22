@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿using Lab6.Database.Models;
 
-namespace Lab6.Database.Models
+namespace Lab6.Models
 {
-    public class Customer
+    public class CustomerModel
     {
-        public string CustomerId { get; set; }
         public string CustomerAddressLine1 { get; set; }
         public string CustomerAddressLine2 { get; set; }
         public string CustomerAddressLine3 { get; set; }
@@ -14,7 +12,6 @@ namespace Lab6.Database.Models
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string CustomerOtherDetails { get; set; }
-        public ICollection<Contract>? Contracts { get; set; }
-        public ICollection<CustomerCall>? CustomerCalls { get; set; }
     }
 }
+

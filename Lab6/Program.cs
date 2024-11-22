@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Lab6.Support;
 using System.Net;
 
 using Microsoft.IdentityModel.Logging;
+using Lab6.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,24 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
     options.Scope = "openid profile email phone";
 });
 
+builder.Services.AddDbContext<CallCentersDbContext>(options => {
+    
+    switch (builder.Configuration["UsingDatabaseProvider"])
+    {
+        case "SqlServer":
+            options.UseSqlServer("");
+            break;
+        case "InMemory":
+            options.UseInMemoryDatabase("CallCentersDb");
+            break;
+        case "Postgres":
+            options.UseNpgsql("");
+            break;
+        default:
+            options.UseSqlite("Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CallCentersDb.db"));
+            break;
+    }
+});
 // Configure the HTTP request pipeline.
 builder.Services.ConfigureSameSiteNoneCookies();
 var app = builder.Build();

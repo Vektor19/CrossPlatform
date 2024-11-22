@@ -8,6 +8,6 @@ namespace Lab6.Database.Models
         public string CallCenterId { get; set; }
         public string CallCenterAddress { get; set; }
         public string CallCenterOtherDetails { get; set; }
-        public ICollection<CustomerCall> CustomerCalls { get; set; }
+        public ICollection<CustomerCall>? CustomerCalls { get; set; }
     }
 }

@@ -16,11 +16,11 @@ namespace Lab6.Database.Models
         public string CallDescription { get; set; }
         public string TailoredSolutionDescription { get; set; }
         public string CallOtherDetails { get; set; }
-        public Customer Customer { get; set; }
-        public CallCenter CallCenter { get; set; }
-        public RefCallOutcome CallOutcome { get; set; }
-        public RefCallStatusCode CallStatus { get; set; }
-        public CommonSolution RecommendedSolution { get; set; }
-        public Staff Staff { get; set; }
+        public Customer? Customer { get; set; }
+        public CallCenter? CallCenter { get; set; }
+        public RefCallOutcome? CallOutcome { get; set; }
+        public RefCallStatusCode? CallStatus { get; set; }
+        public CommonSolution? RecommendedSolution { get; set; }
+        public Staff? Staff { get; set; }
     }
 }

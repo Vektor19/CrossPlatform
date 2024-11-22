@@ -9,7 +9,7 @@ namespace Lab6.Database.Models
         public string ProblemId { get; set; }
         public string ProblemDescription { get; set; }
         public string OtherProblemDetails { get; set; }
-        public ICollection<CommonSolution> CommonSolutions { get; set; }
+        public ICollection<CommonSolution>? CommonSolutions { get; set; }
         [JsonIgnore]
         public List<SolutionsForCommonProblems> SolutionsForCommonProblems { get; set; } = new List<SolutionsForCommonProblems>();
     }
