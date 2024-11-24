@@ -47,15 +47,13 @@ namespace Lab7.Controllers.Api
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] CallCenterModel callCenter)
         {
-            var contractToCreate = new CallCenter
+            var callCenterToCreate = new CallCenter
             {
-                ContractId = Guid.NewGuid().ToString(),
-                CustomerId = callCenter.CustomerId,
-                ContractStartDate = callCenter.ContractStartDate,
-                ContractEndDate = callCenter.ContractEndDate,
-                OtherDetails = callCenter.OtherDetails
+                CallCenterId = Guid.NewGuid().ToString(),
+                CallCenterAddress = callCenter.CallCenterAddress,
+                CallCenterOtherDetails = callCenter.CallCenterOtherDetails
             };
-            await _context.CallCenters.AddAsync(contractToCreate);
+            await _context.CallCenters.AddAsync(callCenterToCreate);
             if (await _context.SaveChangesAsync() > 0)
             {
                 return Ok();
@@ -67,15 +65,13 @@ namespace Lab7.Controllers.Api
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(string id, [FromBody] CallCenterModel callCenter)
         {
-            var contractInDb = await _context.CallCenters.FindAsync(id);
-            if (contractInDb == null)
+            var callCenterInDb = await _context.CallCenters.FindAsync(id);
+            if (callCenterInDb == null)
             {
                 return NotFound();
             }
-            contractInDb.CustomerId = callCenter.CustomerId;
-            contractInDb.ContractStartDate = callCenter.ContractStartDate;
-            contractInDb.ContractEndDate = callCenter.ContractEndDate;
-            contractInDb.OtherDetails = callCenter.OtherDetails;
+            callCenterInDb.CallCenterAddress = callCenter.CallCenterAddress;
+            callCenterInDb.CallCenterOtherDetails = callCenter.CallCenterOtherDetails;
 
             if (await _context.SaveChangesAsync() > 0)
             {
@@ -100,49 +96,6 @@ namespace Lab7.Controllers.Api
                 return Ok();
             }
             return BadRequest();
-        }
-        [HttpGet]
-        [Route("search")]
-        public async Task<ActionResult<IEnumerable<object>>> SearchContracts([FromQuery] SearchContractsRequest request)
-        {
-            var query = _context.CallCenters
-             .Include(c => c.Customer)
-             .AsQueryable();
-            
-            if (request.DateTime.HasValue)
-            {
-                query = query.Where(c => c.ContractStartDate.Date <= request.DateTime.Value.Date
-                                       && c.ContractEndDate.Date >= request.DateTime.Value.Date);
-            }
-
-            if (!string.IsNullOrEmpty(request.CustomerIds))
-            {
-                var ids = request.CustomerIds.Split(",");
-                query = query.Where(c => ids.Contains(c.CustomerId));
-            }
-
-            if (!string.IsNullOrEmpty(request.OtherDetails))
-            {
-                query = query.Where(c => c.OtherDetails.StartsWith(request.OtherDetails));
-            }
-            var results = await query
-                .Select(c => new
-                {
-                    c.ContractId,
-                    c.ContractStartDate,
-                    c.ContractEndDate,
-                    c.OtherDetails,
-                    c.Customer,
-                    c.CustomerId,
-                })
-                .ToListAsync();
-
-            if (!results.Any())
-            {
-                return NotFound("No callcenters found with the specified criteria.");
-            }
-
-            return Ok(results);
         }
     }
 }
