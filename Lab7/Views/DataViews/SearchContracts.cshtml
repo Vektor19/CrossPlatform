@@ -1,0 +1,46 @@
+﻿@model IEnumerable<dynamic>
+
+<h1>Search Contracts</h1>
+<form method="post" action="/DataViews/SearchContracts">
+    <label>Date:</label>
+    <input type="date" name="DateTime" />
+
+    <label>Other Details:</label>
+    <input type="text" name="OtherDetails" />
+
+    <label>Customer IDs (comma-separated):</label>
+    <input type="text" name="CustomerIds" />
+
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Contract ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Details</th>
+            <th>Customer Email</th>
+            <th>Customer ID</th>
+
+        </tr>
+        @foreach (var contract in Model)
+        {
+            <tr>
+                <td>@contract.ContractId</td>
+                <td>@contract.ContractStartDate</td>
+                <td>@contract.ContractEndDate</td>
+                <td>@contract.OtherDetails</td>
+                <td>@contract.Customer.EmailAddress</td>
+                <td>@contract.Customer.CustomerId</td>
+
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No results found.</p>
+}

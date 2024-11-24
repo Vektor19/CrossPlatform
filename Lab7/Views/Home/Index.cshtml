@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Лаба 7 крч</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h2 style="margin-top:2em;">Викоритовуйте навігацію, щоб перейти до лабораторних 1, 2, 3</h2>
+        }
+        else
+        {
+            <h2 style="margin-top:2em;">Увійдіть в аккаунт, щоб перейти до лабораторних 1, 2, 3</h2>
+        }
+           
+        <p>To follow along in building this sample please <a href="https://auth0.com/docs/quickstart/webapp/aspnet-core">refer to the Quickstart</a>.
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Lab6.Database.Models.Contract>;
+@{
+    ViewData["Title"] = "Staff Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Contracts Data</h2>
+
+        <div class="form-group">
+            <label for="viewType">Виберіть тип виведення: </label>
+            <select id="viewType" class="form-control" onchange="changeViewType()">
+                <option value="table" selected>Таблично</option>
+                <option value="list">По-елементно</option>
+            </select>
+        </div>
+
+        <div id="tableView" style="display: block;">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Contract ID</th>
+                        <th>Customer ID</th>
+                        <th>Contract Start Date</th>
+                        <th>Contract End Date</th>
+                        <th>Other Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contract in Model)
+                    {
+                        <tr>
+                            <td>@contract.ContractId</td>
+                            <td>@contract.CustomerId</td>
+                            <td>@contract.ContractStartDate</td>
+                            <td>@contract.ContractEndDate</td>
+                            <td>@contract.OtherDetails</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="itemView" style="display: none;">
+            <ul class="list-group">
+                @foreach (var contract in Model)
+                {
+                    <li class="list-group-item">
+                        <strong>ID:</strong> @contract.ContractId<br>
+                        <strong>Customer ID:</strong> @contract.CustomerId<br>
+                        <strong>Start Date:</strong> @contract.ContractStartDate<br>
+                        <strong>End Date:</strong> @contract.ContractEndDate<br>
+                        <strong>Details:</strong> @contract.OtherDetails
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeViewType() {
+        const viewType = document.getElementById("viewType").value;
+        const tableView = document.getElementById("tableView");
+        const listView = document.getElementById("itemView");
+
+        if (viewType === "table") {
+            tableView.style.display = "block";
+            listView.style.display = "none";
+        } else {
+            tableView.style.display = "none";
+            listView.style.display = "block";
+        }
+    }
+</script>
