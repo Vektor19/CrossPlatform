@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Lab6.Controllers
+namespace Lab7.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,6 @@
-﻿using Lab6.Database.Models;
+﻿using Lab7.Database.Models;
 
-namespace Lab6.RequestModels
+namespace Lab7.RequestModels
 {
     public class ContractModel
     {

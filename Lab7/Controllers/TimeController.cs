@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Lab6.Database;
+using Lab7.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
-namespace Lab6.Controllers
+namespace Lab7.Controllers
 {
     public class TimeController : Controller
     {

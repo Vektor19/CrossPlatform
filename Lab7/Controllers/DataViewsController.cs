@@ -1,13 +1,13 @@
-﻿using Lab6.Database;
+﻿using Lab7.Database;
 using Microsoft.AspNetCore.Mvc;
-using Lab6.Database.Models;
+using Lab7.Database.Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Lab6.RequestModels;
+using Lab7.RequestModels;
 using System.Net.Http.Json;
 using System.Net.Http;
 
-namespace Lab6.Controllers
+namespace Lab7.Controllers
 {
     public class DataViewsController : Controller
     {

@@ -1,11 +1,11 @@
-﻿using Lab6.Database;
-using Lab6.Database.Models;
-using Lab6.RequestModels;
+﻿using Lab7.Database;
+using Lab7.Database.Models;
+using Lab7.RequestModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lab6.Controllers.Api
+namespace Lab7.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Lab6.Support;
+using Lab7.Support;
 using System.Net;
 
 using Microsoft.IdentityModel.Logging;
-using Lab6.Database;
+using Lab7.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

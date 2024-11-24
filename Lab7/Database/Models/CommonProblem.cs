@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
-namespace Lab6.Database.Models
+namespace Lab7.Database.Models
 {
     public class CommonProblem
     {

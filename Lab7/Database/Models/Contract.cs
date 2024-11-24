@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Lab6.Database.Models
+namespace Lab7.Database.Models
 {
     public class Contract
     {

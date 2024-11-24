@@ -1,8 +1,8 @@
-﻿using Lab6.Database.Models;
+﻿using Lab7.Database.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
-namespace Lab6.Controllers.Api
+namespace Lab7.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]

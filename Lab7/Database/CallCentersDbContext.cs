@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Lab6.Database.Models;
+using Lab7.Database.Models;
 using Microsoft.SqlServer.Server;
-namespace Lab6.Database
+namespace Lab7.Database
 {
     public class CallCentersDbContext: DbContext
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lab6.Controllers
+namespace Lab7.Controllers
 {
     [Authorize]
     public class LabController : Controller
