@@ -17,16 +17,16 @@ namespace Lab7.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Staff()
+        public async Task<IActionResult> StaffV1()
         {
             HttpClient httpClient = new HttpClient();
-            var response = await httpClient.GetAsync("http://localhost:3000/api/staffs");
-            IEnumerable<Staff>? staffs = null;
+            var response = await httpClient.GetAsync("http://localhost:3000/api/v1/staffs");
+            IEnumerable<StaffViewModel>? staffs = null;
 
             var jsonData = await response.Content.ReadAsStringAsync();
             try
             {
-                staffs = JsonSerializer.Deserialize<List<Staff>>(jsonData, new JsonSerializerOptions
+                staffs = JsonSerializer.Deserialize<List<StaffViewModel>>(jsonData, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 });
@@ -35,7 +35,24 @@ namespace Lab7.Controllers
             {
 
             }
-            return View(staffs);
+            return View("Staff", staffs);
+        }
+
+        public async Task<IActionResult> StaffV2()
+        {
+            HttpClient httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("http://localhost:3000/api/v2/staffs");
+            var staffs = await response.Content.ReadFromJsonAsync<IEnumerable<StaffViewModel>>();
+            
+            return View("Staff", staffs);
+        }
+        public class StaffViewModel
+        {
+            public string StaffId { get; set; }
+            public string EmailAddress { get; set; }
+            public string PhoneNumber { get; set; }
+            public string OtherDetails { get; set; }
+            public string? FullDetails { get; set; }
         }
         public async Task<IActionResult> Customers()
         {
